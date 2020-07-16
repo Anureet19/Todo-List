@@ -21,5 +21,6 @@ enum class PriorityLevel{
 data class Task(@PrimaryKey(autoGenerate = true) val id: Long,
                 val title: String,
                 val detail: String,
+                val category: String,
                 @ColumnInfo(name = "priority") val priority: Int,
                 val status: Int)

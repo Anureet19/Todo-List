@@ -50,6 +50,7 @@ class TaskAdapter(private val listener: (Long) -> Unit):
                 }
                 task_title.text = task.title
                 task_detail.text = task.detail
+                task_category.text = task.category
             }
         }
     }

@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context="TaskDetailFragment">
 
+    <EditText
+        android:id="@+id/task_category"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:hint="Enter category"
+        android:inputType="text|textMultiLine"
+        android:maxLength="150"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/task_detail"
+        app:layout_constraintTop_toBottomOf="@+id/task_detail" />
+
     <TextView
         android:id="@+id/status_label"
         android:layout_width="wrap_content"
@@ -22,6 +34,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/delete_task"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/save_task"
         app:layout_constraintTop_toBottomOf="@+id/status_group" />
 
     <View
@@ -73,21 +86,21 @@
         android:id="@+id/priority_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/priority"
-        app:layout_constraintStart_toStartOf="@+id/task_detail"
-        app:layout_constraintTop_toBottomOf="@+id/task_detail" />
+        app:layout_constraintStart_toStartOf="@+id/task_category"
+        app:layout_constraintTop_toBottomOf="@+id/task_category" />
 
     <Spinner
         android:id="@+id/task_priority"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/priority_label"
-        app:layout_constraintTop_toBottomOf="@+id/task_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/task_category" />
 
     <RadioGroup
         android:id="@+id/status_group"
