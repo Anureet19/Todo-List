@@ -1,25 +1,33 @@
-package com.anureet.todo_list
+package com.anureet.todo_list.ui
 
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anureet.todo_list.R
+//import com.anureet.todo_list.TaskListFragmentDirections
+import com.anureet.todo_list.data.SortColumn
 import kotlinx.android.synthetic.main.fragment_task_list.*
 
 /**
  * A simple [Fragment] subclass.
  */
+@Suppress("DEPRECATION")
 class TaskListFragment : Fragment() {
 
+    private lateinit var viewModel: TaskListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
 
         setHasOptionsMenu(true)
+        viewModel = ViewModelProviders.of(this).get(TaskListViewModel::class.java)
     }
 
 
@@ -36,16 +44,26 @@ class TaskListFragment : Fragment() {
 
         with(taskList){
             layoutManager = LinearLayoutManager(activity)
-            adapter = TaskAdapter{
+            adapter = TaskAdapter {
                 findNavController().navigate(
-                    TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment(it))
+                    TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment(
+                        it
+                    )
+                )
             }
         }
 
         add_task.setOnClickListener{
             findNavController().navigate(
-                TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment(0))
+                TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment(
+                    0
+                )
+            )
         }
+        viewModel.tasks.observe(viewLifecycleOwner, Observer{
+            (taskList.adapter as TaskAdapter).submitList(it)
+        })
+
 
     }
 
@@ -56,12 +74,12 @@ class TaskListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_sort_priority -> {
-
+                viewModel.changeSortOrder(SortColumn.Priority)
                 item.isChecked = true
                 true
             }
             R.id.menu_sort_title -> {
-
+                viewModel.changeSortOrder(SortColumn.Title)
                 item.isChecked = true
                 true
             }

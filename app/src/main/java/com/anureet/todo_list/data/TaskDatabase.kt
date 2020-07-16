@@ -1,4 +1,4 @@
-package com.anureet.todo_list
+package com.anureet.todo_list.data
 
 import android.content.Context
 import androidx.room.Database

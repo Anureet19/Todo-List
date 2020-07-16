@@ -1,7 +1,8 @@
-package com.anureet.todo_list
+package com.anureet.todo_list.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.anureet.todo_list.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

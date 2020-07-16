@@ -1,8 +1,9 @@
-package com.anureet.todo_list
+package com.anureet.todo_list.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
+import com.anureet.todo_list.data.Task
 
 @Dao
 interface TaskListDao{
